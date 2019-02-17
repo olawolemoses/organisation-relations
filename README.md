@@ -34,7 +34,7 @@ The following were required to get started:
 1. Mysql Database
 2. Create a database name: "pipedrive".
 
-## Getting Started
+## Discussion
 The following were required to get started:
-1. Mysql Database
-2. Create a database name: "pipedrive".
+a) Could this service perform well even with up to 100K relations per one organization?
+b) What would you change in architecture if 1M relations support is needed?
