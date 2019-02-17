@@ -19,14 +19,22 @@ The bot is suppose to maintain a session and continuously listen to the predefin
 ## Development Language
 * JavaScript (Node.JS)
 
+## Database Server
+* MySQL
+
 ## Setup
 * Install Nodejs >= v6.10.3
 * Install Yarn
 * Clone this Project
 * Run yarn install to install all dependencies from package.json
-* Run npm test to run all test specs.
+* Run yarn test to run all test specs.
 
 ## Getting Started
 The following were required to get started:
 1. Mysql Database
-2. Create a database name: "pipedrive" on the Google API Console.
+2. Create a database name: "pipedrive".
+
+## Getting Started
+The following were required to get started:
+1. Mysql Database
+2. Create a database name: "pipedrive".
