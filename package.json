@@ -1,0 +1,25 @@
+{
+  "name": "organisation-relations",
+  "version": "1.0.0",
+  "description": "An interview test for pipedrive",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "node ./app.js",
+    "watch": "nodemon ./app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "4.0.0",
+    "es6-promisify": "5.0.0",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.18.10",
+    "passport": "0.3.2",
+    "passport-local": "1.0.0",
+    "sequelize": "^4.42.0"
+  }
+}

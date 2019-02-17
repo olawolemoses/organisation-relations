@@ -1,0 +1,47 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+
+PATH: 
+  C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\ProgramData\chocolatey\bin;C:\MAMP\bin\php\php7.2.10;C:\composer;C:\Program Files\Java\jdk-11.0.2\bin;C:\Windows\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Git\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\MongoDB\Server\3.4\bin;C:\Go\bin;C:\Users\olawo\AppData\Local\Microsoft\WindowsApps;C:\Users\olawo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\olawo\AppData\Roaming\Composer\vendor\bin;C:\Users\olawo\AppData\Roaming\npm;C:\Users\olawo\AppData\Local\Yarn\bin;C:\Users\olawo\go\bin
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  8.11.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com registry.yarnpkg.com:443
+      at errnoException (dns.js:50:10)
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:92:26)
+
+npm manifest: 
+  {
+    "name": "organisation-relations",
+    "version": "1.0.0",
+    "description": "An interview test for pipedrive",
+    "main": "app.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.18.3",
+      "express": "^4.16.4",
+      "mysql": "^2.16.0",
+      "dotenv": "4.0.0",
+      "passport": "0.3.2",
+      "passport-local": "1.0.0",
+      "es6-promisify": "5.0.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
