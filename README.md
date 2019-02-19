@@ -37,4 +37,15 @@ The following were required to get started:
 ## Discussion
 The following were required to get started:
 a) Could this service perform well even with up to 100K relations per one organization?
+If a organisation could have 100k relations, it means there are at least a 100K organisations. 
+This makes it mathematically 100:100+K relations. 
+Given the service currently is expected to running on a cloud server such as aws with appropriate load balancing.
+The database, such as MySQL thrive well at relational database queries because that's what they are good for.
+The limitation is based on the configurations on the MySQL
+* use indexes on the organisations and relations table
+* memory assigned to MYSQL database
+
+
+MySQL is very good at  
 b) What would you change in architecture if 1M relations support is needed?
+* use of Redis to store common, repeatedly read  Query Selects.
