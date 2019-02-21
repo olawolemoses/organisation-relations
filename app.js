@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 
+require('dotenv').config();
+
 // load models
 const db = require('./sequelize');
 
