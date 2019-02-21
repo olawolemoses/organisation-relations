@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
@@ -17,9 +18,21 @@ app.set('port', process.env.port || port); // set express to use this port
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // parse form data client
 
+
 // routes for the app
 app.use('/', routes(db));
 //routes(app, db);
+
+app.use((err, req, res) => {
+  res.status(err.status || 500);
+
+  res.json({
+    errors: {
+      message: err.message,
+      error: {},
+    },
+  });
+});
 
 // set the app to listen on the port
 app.listen(port, () => {
