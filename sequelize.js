@@ -26,8 +26,8 @@ sequelize.sync({force: true})
   });
 
 sequelize.query(`
-DROP PROCEDURE IF EXISTS emp_performance;
-CREATE PROCEDURE emp_performance(IN org_id INT(11), IN start_id INT, IN end_id INT, IN limit_no INT ) 
+DROP PROCEDURE IF EXISTS get_organisation_relations;
+CREATE PROCEDURE get_organisation_relations(IN org_id INT(11), IN start_id INT, IN end_id INT, IN limit_no INT ) 
 BEGIN 
   DECLARE parentID INT; 
   DECLARE no_more_parents INT DEFAULT 0; 

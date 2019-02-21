@@ -111,8 +111,8 @@ exports.list = function(db) {
 
 	    try {
 	    		db.Organisation.find({where: {org_name: name} }).then(function(org){	    			
-		    		let sql1 = db.sequelize.query(`CALL emp_performance(:org_id, :start_id, :end_id, :page_size);`,
-		    					{replacements: { org_id: org.id, start_id: start_id, end_id: end_id, page_size:page_size }}
+		    		let sql1 = db.sequelize.query(`CALL get_organisation_relations(:org_id, :start_id, :end_id, :page_size);`,
+		    						{replacements: { org_id: org.id, start_id: start_id, end_id: end_id, page_size:page_size }}
 		    					)
 		    					.then(function(results){
 		    						res.json( results );
