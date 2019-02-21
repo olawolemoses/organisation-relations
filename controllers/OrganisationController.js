@@ -103,95 +103,22 @@ exports.create = function(db) {
 exports.list = function(db) {
 	return async (req, res) => {
 	    const name = req.params.name;
-	    const page = req.params.page || 1;
-	    const limit = 3;
-	    const skip = (page * limit) - limit;
+		const org_id = 1;
+		const page = req.params.page || 1;
+		const page_size = 100;
+		const start_id = page_size * (page - 1);
+		const end_id = (page_size * (page - 1) + page_size) + 1;
 
 	    try {
-	            const resultsPromise = db.sequelize.query(`
-					SELECT org_name, relationship_type 
-	                FROM
-	                (
-	                    SELECT o.org_name, "parent" AS "relationship_type" FROM organisations o
-	                    WHERE o.id IN (
-	                        SELECT parent_id FROM relations, organisations
-	                        WHERE organisations.id = relations.organisation_id && org_name = '${name}'
-	                    )
-	                    
-	                    UNION
-	                    
-	                    SELECT distinct org_name, "sister" AS "relationship_type"
-	                    FROM organisations o, relations r
-	                    WHERE o.id = r.organisation_id  AND org_name != '${name}' AND r.parent_id IN (
-	                        SELECT o.id FROM organisations o
-	                        WHERE o.id IN (
-	                            SELECT parent_id FROM relations, organisations
-	                            WHERE organisations.id = relations.organisation_id && org_name = '${name}'
-	                        )
-	                    )
-	                    
-	                    UNION
-	                    
-	                    SELECT distinct org_name, "daughter" AS "relationship_type"
-	                    FROM organisations o, relations r
-                    	WHERE o.id = r.organisation_id AND r.parent_id IN (
-                        	SELECT organisations.id FROM organisations  WHERE org_name = '${name}'
-                    	)
-	                ) as family
+	    		db.Organisation.find({where: {org_name: name} }).then(function(org){	    			
+		    		let sql1 = db.sequelize.query(`CALL emp_performance(:org_id, :start_id, :end_id, :page_size);`,
+		    					{replacements: { org_id: org.id, start_id: start_id, end_id: end_id, page_size:page_size }}
+		    					)
+		    					.then(function(results){
+		    						res.json( results );
+		    					});	    			
+	    		});
 
-	                ORDER BY org_name asc
-	                LIMIT ${limit} OFFSET ${skip};
-	                `
-	        );
-
-	        const countPromise = db.sequelize.query(`
-            	SELECT count(*) as count
-               	FROM
-                (
-                    SELECT o.org_name, "parent" AS "relationship_type" FROM organisations o
-                    WHERE o.id IN (
-                        SELECT parent_id FROM relations, organisations
-                        WHERE organisations.id = relations.organisation_id && org_name = '${name}'
-                    )
-                    
-                    UNION
-                    
-                    SELECT distinct org_name, "sister" AS "relationship_type"
-                    FROM organisations o, relations r
-                    WHERE o.id = r.organisation_id  AND org_name != '${name}' AND r.parent_id IN (
-                        SELECT o.id FROM organisations o
-                        WHERE o.id IN (
-                            SELECT parent_id FROM relations, organisations
-                            WHERE organisations.id = relations.organisation_id && org_name = '${name}'
-                        )
-                    )
-                    
-                    UNION
-                    
-                    SELECT distinct org_name, "daughter" AS "relationship_type"
-                    FROM organisations o, relations r
-                	WHERE o.id = r.organisation_id AND r.parent_id IN (
-                    	SELECT organisations.id FROM organisations  WHERE org_name = '${name}'
-                	)
-                ) as family;
-                `
-	        );      
-	        const [results, count] = await Promise.all([resultsPromise, countPromise]);
-
-	        const pages = Math.ceil(count[0] / limit);
-
-	        console.log( count[0][0].count , limit, pages);
-	        
-	        if (!results[0].length && skip) {
-
-	            res.json( "not found" );
-	            
-	            return;
-	        }
-	        
-	        res.json([results[0], count[0], pages]);
-
-	        return;
 	    } 
 	    catch( err ) {
 	        res.json( "not found: " + err );
