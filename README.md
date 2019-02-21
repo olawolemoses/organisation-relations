@@ -14,6 +14,7 @@ This endpoint response includes all parents, daughters and sisters of a given or
 Target Endpoints:
 * All relations and organisations are inserted with one request (endpoint1).
 * API has a feature to retrieve all relations of one organization (endpoint 2). 
+
 The bot is suppose to maintain a session and continuously listen to the predefined hashtag
 
 ## Development Language
@@ -41,13 +42,14 @@ If a organisation could up to 100k distinct relations, it means there are at lea
 This makes it mathematically 100k:100k cartesian relations.
 
 Given the service currently is expected to running on a cloud server such as aws with appropriate load balancing.
-The database, such as MySQL would still thrive well at relational database queries because that's what they are good for.
+The database, such as MySQL would still thrive well at relational database queries.
+
 The limitation is based on the configurations on the MySQL
 * use indexes on the organisations and relations table
 * memory assigned to MYSQL database
   
 b) What would you change in architecture if 1M relations support is needed?
 * Use of Redis to store common, repeatedly read Query Selects. Caching helps applications retrieve data quickly and limit the load on the database server.
-* Authentication of clients could be done using NoSQL separate from the MySQL relational database for the organisations-relations 
-* Use of sessions to identify clients across requests to improve the service 
+* Authentication of clients could be done using NoSQL separate from the MySQL relational database for the organisations-relations.
+* Use of sessions to identify clients across requests to improve the service.
 * server load balancing such that each client must connect to a dedicated server each time.
