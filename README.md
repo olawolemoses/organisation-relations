@@ -60,7 +60,7 @@ The limitation is based on the configurations on the MySQL
 * memory assigned to MYSQL database
   
 b) What would you change in architecture if 1M relations support is needed?
-* Use of Redis to store common, repeatedly read Query Selects. Caching helps applications retrieve data quickly and limit the load on the database server.
+* Use of Redis as cache to store common, repeatedly read Query result sets.
 * Authentication of clients could be done using NoSQL separate from the MySQL relational database for the organisations-relations.
 * Use of sessions to identify clients across requests to improve the service.
 * server load balancing such that each client must connect to a dedicated server each time.
