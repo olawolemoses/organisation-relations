@@ -27,13 +27,24 @@ The bot is suppose to maintain a session and continuously listen to the predefin
 * Install Nodejs >= v6.10.3
 * Install Yarn
 * Clone this Project
-* Run yarn install to install all dependencies from package.json
-* Run yarn test to run all test specs.
+* Run `yarn install` to install all dependencies from package.json
+* Run `yarn test` to run all test specs.
 
 ## Getting Started
 The following were required to get started:
 1. Mysql Database
-2. Create a database name: "pipedrive".
+2. Create a database name: `pipedrive`.
+3. Change the mysql details in the sequelize to your mysql details
+
+## Vagrant
+The following were required to get started:
+1. vagrant up
+2. vagrant ssh
+3. cd to `~/pipedrive/organisation-relations`
+4. `yarn prod` to run the server
+5. Another console to run the `yarn test`
+6. or postman using `http://192.168.33.10:7777/organisation/Black Banana/1` to pull organisation relations of Black Banana for page 1
+7. `http://192.168.33.10:7777` to post the data to create the organisation and relations.
 
 ## Discussion
 The following were required to get started:
